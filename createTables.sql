@@ -16,7 +16,7 @@ CREATE TABLE child (
 	dob		date,
 	gender	varchar(6),
 	primary key (cid),
-	constraint gender_check check (gender in ('Male', 'Female', 'Other'))
+	constraint gender_check check (gender in ('MALE', 'FEMALE', 'Other'))
 );
 
 CREATE TABLE parent (

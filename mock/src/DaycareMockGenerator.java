@@ -67,7 +67,7 @@ public class DaycareMockGenerator {
             for(int i = 0; i < numEntries; i++) {
                 int randChoice = rand.nextInt(entries);
                 Person randPerson = people.get(randChoice);
-                String dmlStmt = "INSERT INTO CHILD VALUES ('" +randPerson.getFirstName()+ "','" +
+                String dmlStmt = "INSERT INTO CHILD VALUES (DEFAULT,'" +randPerson.getFirstName()+ "','" +
                          randPerson.getLastName() + "','"
                         +"1/2/2021','"
                         +randPerson.getGender()+ "');";

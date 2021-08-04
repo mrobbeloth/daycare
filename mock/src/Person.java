@@ -24,8 +24,8 @@ public class Person {
     }
 
     public Person(String firstName, String lastName, String gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = firstName.replace("'","''");
+        this.lastName = lastName.replace("'","''");;
         switch(gender.toLowerCase().charAt(0)) {
             case 'f':
                 this.genderLbl = Gender.FEMALE;

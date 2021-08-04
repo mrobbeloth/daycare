@@ -139,7 +139,7 @@ public class DaycareMockGenerator {
             // Generate mood tuples, from Oxford Dictionary
             // https://languages.oup.com/google-dictionary-en/
             outputStream.println("INSERT INTO MOOD VALUES ('EXHAUSTED'," +
-                    " 'drained of one\'s physical or mental resources');");
+                    " 'drained of one''s physical or mental resources');");
             outputStream.println("INSERT INTO MOOD VALUES ('CONFUSED', " +
                     "'unable to think clearly; bewildered');");
             outputStream.println("INSERT INTO MOOD VALUES ('ECSTATIC', " +

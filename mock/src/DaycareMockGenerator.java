@@ -152,8 +152,8 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO MOOD VALUES ('HYSTERICAL', " +
                     "'deriving from or affected by uncontrolled extreme emotion');");
             outputStream.println("INSERT INTO MOOD VALUES ('FRUSTRATED', " +
-                    "'feeling or expressing distress and annoyance, " +
-                    "especially because of inability to change or achieve something');");
+                    "'feeling/expressing distress and annoyance, " +
+                    "especially because of inability to change/achieve a thing');");
             outputStream.println("INSERT INTO MOOD VALUES ('SAD', " +
                     "'feeling or showing sorrow; unhappy');");
             outputStream.println("INSERT INTO MOOD VALUES ('CONFIDENT', " +
@@ -177,7 +177,7 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO MOOD VALUES ('SMUG', " +
                     "'having or showing an excessive pride in oneself or one''s achievements');");
             outputStream.println("INSERT INTO MOOD VALUES ('DEPRESSED', " +
-                    "'in a state of general unhappiness or despondency');'");
+                    "'in a state of general unhappiness or despondency');");
             outputStream.println("INSERT INTO MOOD VALUES ('OVERWHELMED', " +
                     "'bury or drown beneath a huge mass');");
             outputStream.println("INSERT INTO MOOD VALUES ('HOPEFUL', " +

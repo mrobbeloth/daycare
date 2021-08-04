@@ -133,8 +133,7 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO CATEGORY VALUES ('DROPOFF', 'A child is entering the facility');");
             outputStream.println("INSERT INTO CATEGORY VALUES ('PICKUP', 'A child is leaving the facility');");
             outputStream.println("INSERT INTO CATEGORY VALUES ('TEST', 'This is a test entry and not valid');");
-            outputStream.println("INSERT INTO CATEGORY VALUES ('OTHER', 'This type of transfer is not a " +
-                                                                         "dropoff/pickup');");
+            outputStream.println("INSERT INTO CATEGORY VALUES ('OTHER', 'not a dropoff/pickup');");
 
             // Generate mood tuples, from Oxford Dictionary
             // https://languages.oup.com/google-dictionary-en/

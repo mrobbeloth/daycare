@@ -134,7 +134,7 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO CATEGORY VALUES ('PICKUP', 'A child is leaving the facility');");
             outputStream.println("INSERT INTO CATEGORY VALUES ('TEST', 'This is a test entry and not valid');");
             outputStream.println("INSERT INTO CATEGORY VALUES ('OTHER', 'This type of transfer is not a " +
-                                                                         "dropoff or pickup');");
+                                                                         "dropoff/pickup');");
 
             // Generate mood tuples, from Oxford Dictionary
             // https://languages.oup.com/google-dictionary-en/
@@ -176,7 +176,7 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO MOOD VALUES ('CAUTIOUS', " +
                     "'careful to avoid potential problems or dangers');");
             outputStream.println("INSERT INTO MOOD VALUES ('SMUG', " +
-                    "'having or showing an excessive pride in oneself or one's achievements');");
+                    "'having or showing an excessive pride in oneself or one''s achievements');");
             outputStream.println("INSERT INTO MOOD VALUES ('DEPRESSED', " +
                     "'in a state of general unhappiness or despondency');'");
             outputStream.println("INSERT INTO MOOD VALUES ('OVERWHELMED', " +
@@ -188,7 +188,7 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO MOOD VALUES ('LOVESTRUCK', " +
                     "'besotted or infatuated.');");
             outputStream.println("INSERT INTO MOOD VALUES ('BORED', " +
-                    "'feeling weary because one is unoccupied or lacks interest in one's current activity');");
+                    "'feeling weary because one is unoccupied or lacks interest in one''s current activity');");
             outputStream.println("INSERT INTO MOOD VALUES ('SURPRISED', " +
                     "'mild astonishment or shock');");
             outputStream.println("INSERT INTO MOOD VALUES ('ANXIOUS', " +

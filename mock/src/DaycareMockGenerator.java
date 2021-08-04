@@ -16,7 +16,7 @@ public class DaycareMockGenerator {
             Scanner kb = new Scanner(System.in);
             System.out.print("Number of Entries: ");
             String numEntriesStr = kb.nextLine();
-            int numEntries = Integer.valueOf(numEntriesStr);
+            int numEntries = Integer.parseInt(numEntriesStr);
 
             // Read CSV file with names and store into in-memory data structure
             String fName = "mock_data.csv";
@@ -24,6 +24,8 @@ public class DaycareMockGenerator {
             String dmlOutput = "insert_daycare_log_data.sql";
             ArrayList<String> surnames = new ArrayList<>(100);
             ArrayList<Person> people = new ArrayList<>(100);
+            ArrayList<Child> children = new ArrayList<>(100);
+            ArrayList<Parent> parents = new ArrayList<>(100);
             Scanner inputStream = null;
             Scanner inputStream2 = null;
             Random rand = new Random();
@@ -33,9 +35,9 @@ public class DaycareMockGenerator {
                 inputStream = new Scanner(new File(fName));
                 inputStream2 = new Scanner(new File(fName2));
 
-                // skip header
+                // skip header lines
                 String line = inputStream.nextLine();
-                String line2 = inputStream2.nextLine();
+                inputStream2.nextLine();
 
                 // Read in last names
                 while (inputStream2.hasNextLine()) {
@@ -63,6 +65,7 @@ public class DaycareMockGenerator {
                 e.printStackTrace();
             }
 
+            // Generate children
             int entries = people.size();
             for(int i = 0; i < numEntries; i++) {
                 int randChoice = rand.nextInt(entries);
@@ -72,12 +75,64 @@ public class DaycareMockGenerator {
                         +"1/2/2021','"
                         +randPerson.getGender()+ "');";
                 System.out.println(dmlStmt);
-                outputStream.println(dmlStmt);
+                if (outputStream != null) {
+                    outputStream.println(dmlStmt);
+                }
+
+                // add to children arraylist for later use
+                Child c = new Child(randPerson.getFirstName(), randPerson.getFirstName(), randPerson.getGender());
+                children.add(c);
+            }
+
+            // Generate Parents
+            for(int i = 0; i < numEntries / 2; i++) {
+                int randChoice = rand.nextInt(entries);
+                Person randPerson = people.get(randChoice);
+                String dmlStmt = "INSERT INTO PARENT VALUES (DEFAULT,'" +randPerson.getFirstName()+ "','" +
+                        randPerson.getLastName() + "','"
+                        +"1/2/1990','"
+                        +randPerson.getGender()+ "');";
+                System.out.println(dmlStmt);
+                if (outputStream != null) {
+                    outputStream.println(dmlStmt);
+                }
+
+                // add to children arraylist for later use
+                Parent p = new Parent(randPerson.getFirstName(), randPerson.getFirstName(), randPerson.getGender());
+                parents.add(p);
+            }
+
+            // Assign children to parents
+            ArrayList<Integer> kidPicks = new ArrayList<>(entries);
+            int curParent = 0;
+            for (int i = 0; i <= parents.size(); i++) {
+                int randChild = rand.nextInt(entries);
+                while (kidPicks.contains(randChild)) {
+                    randChild = rand.nextInt(entries);
+                }
+                kidPicks.add(randChild);
+                int cid = children.get(randChild).getCid();
+                int pid = parents.get(curParent).getPid();
+                String dmlStmt = "INSERT INTO FAMILY VALUES ('"+cid+"','"+pid+"');";
+                System.out.println(dmlStmt);
+                if (outputStream != null) {
+                    outputStream.println(dmlStmt);
+                }
+
+                if (i%2 == 0)  {
+                    curParent++;
+                }
             }
 
             // Release resources
-            inputStream.close();
-            inputStream2.close();
-            outputStream.close();
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (inputStream2 != null) {
+                inputStream2.close();
+            }
+            if (outputStream != null) {
+                outputStream.close();
+            }
         }
 }

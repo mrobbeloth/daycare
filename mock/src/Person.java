@@ -17,6 +17,12 @@ public class Person {
     private final String lastName;
     private final Gender genderLbl;
 
+    public Person() {
+        firstName = "James";
+        lastName = "Kirk";
+        genderLbl = Gender.MALE;
+    }
+
     public Person(String firstName, String lastName, String gender) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -38,13 +38,13 @@ CREATE TABLE transfer(
 
 CREATE TABLE category(
 	name		varchar(20),
-	description	varchar(40),
+	description	varchar(100),
 	primary key (name)
 );
 
 CREATE TABLE mood(
 	name		varchar(20),
-	description	varchar(40),
+	description	varchar(100),
 	primary key (name)
 );
 

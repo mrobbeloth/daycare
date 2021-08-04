@@ -105,10 +105,11 @@ public class DaycareMockGenerator {
             // Assign children to parents
             ArrayList<Integer> kidPicks = new ArrayList<>(entries);
             int curParent = 0;
-            for (int i = 0; i <= parents.size(); i++) {
-                int randChild = rand.nextInt(entries);
+            int childALSize = children.size();
+            for (int i = 0; curParent < parents.size(); i++) {
+                int randChild = rand.nextInt(childALSize);
                 while (kidPicks.contains(randChild)) {
-                    randChild = rand.nextInt(entries);
+                    randChild = rand.nextInt(childALSize);
                 }
                 kidPicks.add(randChild);
                 int cid = children.get(randChild).getCid();

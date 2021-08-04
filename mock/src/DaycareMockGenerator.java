@@ -130,7 +130,7 @@ public class DaycareMockGenerator {
             }
 
             // Generate category tuples
-            outputStream.println("INSERT INTO CATEGORY VALUES ('DROPOFF', 'A child is entering the facility');'");
+            outputStream.println("INSERT INTO CATEGORY VALUES ('DROPOFF', 'A child is entering the facility');");
             outputStream.println("INSERT INTO CATEGORY VALUES ('PICKUP', 'A child is leaving the facility');");
             outputStream.println("INSERT INTO CATEGORY VALUES ('TEST', 'This is a test entry and not valid');");
             outputStream.println("INSERT INTO CATEGORY VALUES ('OTHER', 'This type of transfer is not a " +
@@ -139,11 +139,11 @@ public class DaycareMockGenerator {
             // Generate mood tuples, from Oxford Dictionary
             // https://languages.oup.com/google-dictionary-en/
             outputStream.println("INSERT INTO MOOD VALUES ('EXHAUSTED'," +
-                    " 'drained of one's physical or mental resources');");
+                    " 'drained of one\'s physical or mental resources');");
             outputStream.println("INSERT INTO MOOD VALUES ('CONFUSED', " +
                     "'unable to think clearly; bewildered');");
             outputStream.println("INSERT INTO MOOD VALUES ('ECSTATIC', " +
-                    "'overwhelming happiness or joyful excitement);'");
+                    "'overwhelming happiness or joyful excitement);");
             outputStream.println("INSERT INTO MOOD VALUES ('GUILTY', " +
                     "'culpable of or responsible for a specified wrongdoing');");
             outputStream.println("INSERT INTO MOOD VALUES ('SUSPICIOUS', " +

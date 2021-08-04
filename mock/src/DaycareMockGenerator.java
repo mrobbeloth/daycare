@@ -19,6 +19,10 @@ public class DaycareMockGenerator {
             int numEntries = Integer.parseInt(numEntriesStr);
 
             // Read CSV file with names and store into in-memory data structure
+            // Source data is the National Records of Scotland
+            // Filtered data for use in this utility
+            // https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/names/most-common-surnames/list-of-data-tables
+            // https://www.nrscotland.gov.uk/statistics-and-data/statistics/statistics-by-theme/vital-events/names/babies-first-names/babies-first-names-summary-records-comma-separated-value-csv-format
             String fName = "mock_data.csv";
             String fName2 = "mock_data_surnames.csv";
             String dmlOutput = "insert_daycare_log_data.sql";
@@ -124,6 +128,75 @@ public class DaycareMockGenerator {
                     curParent++;
                 }
             }
+
+            // Generate category tuples
+            outputStream.println("INSERT INTO CATEGORY VALUES ('DROPOFF', 'A child is entering the facility');'");
+            outputStream.println("INSERT INTO CATEGORY VALUES ('PICKUP', 'A child is leaving the facility');");
+            outputStream.println("INSERT INTO CATEGORY VALUES ('TEST', 'This is a test entry and not valid');");
+            outputStream.println("INSERT INTO CATEGORY VALUES ('OTHER', 'This type of transfer is not a " +
+                                                                         "dropoff or pickup');");
+
+            // Generate mood tuples, from Oxford Dictionary
+            // https://languages.oup.com/google-dictionary-en/
+            outputStream.println("INSERT INTO MOOD VALUES ('EXHAUSTED'," +
+                    " 'drained of one's physical or mental resources');");
+            outputStream.println("INSERT INTO MOOD VALUES ('CONFUSED', " +
+                    "'unable to think clearly; bewildered');");
+            outputStream.println("INSERT INTO MOOD VALUES ('ECSTATIC', " +
+                    "'overwhelming happiness or joyful excitement);'");
+            outputStream.println("INSERT INTO MOOD VALUES ('GUILTY', " +
+                    "'culpable of or responsible for a specified wrongdoing');");
+            outputStream.println("INSERT INTO MOOD VALUES ('SUSPICIOUS', " +
+                    "'having or showing a cautious distrust of someone or something');");
+            outputStream.println("INSERT INTO MOOD VALUES ('ANGRY', " +
+                    "'feeling or showing strong annoyance, displeasure, or hostility');");
+            outputStream.println("INSERT INTO MOOD VALUES ('HYSTERICAL', " +
+                    "'deriving from or affected by uncontrolled extreme emotion');");
+            outputStream.println("INSERT INTO MOOD VALUES ('FRUSTRATED', " +
+                    "'feeling or expressing distress and annoyance, " +
+                    "especially because of inability to change or achieve something');");
+            outputStream.println("INSERT INTO MOOD VALUES ('SAD', " +
+                    "'feeling or showing sorrow; unhappy');");
+            outputStream.println("INSERT INTO MOOD VALUES ('CONFIDENT', " +
+                    "'feeling or showing certainty about something; self-assured');");
+            outputStream.println("INSERT INTO MOOD VALUES ('EMBARRASSED', " +
+                    "'feeling or showing awkwardness or unease');");
+            outputStream.println("INSERT INTO MOOD VALUES ('HAPPY', " +
+                    "'feeling or showing pleasure or contentment');");
+            outputStream.println("INSERT INTO MOOD VALUES ('MISCHIEVOUS', " +
+                    "'causing or showing a fondness for causing trouble in a playful way');");
+            outputStream.println("INSERT INTO MOOD VALUES ('DISGUSTED', " +
+                    "'feeling or expressing revulsion or strong disapproval');");
+            outputStream.println("INSERT INTO MOOD VALUES ('FRIGHTENED', " +
+                    "'afraid or anxious');");
+            outputStream.println("INSERT INTO MOOD VALUES ('ENRAGED', " +
+                    "'very angry; furious');");
+            outputStream.println("INSERT INTO MOOD VALUES ('ASHAMED', " +
+                    "'embarrassed or guilty because of one's actions, characteristics, or associations');");
+            outputStream.println("INSERT INTO MOOD VALUES ('CAUTIOUS', " +
+                    "'careful to avoid potential problems or dangers');");
+            outputStream.println("INSERT INTO MOOD VALUES ('SMUG', " +
+                    "'having or showing an excessive pride in oneself or one's achievements');");
+            outputStream.println("INSERT INTO MOOD VALUES ('DEPRESSED', " +
+                    "'in a state of general unhappiness or despondency');'");
+            outputStream.println("INSERT INTO MOOD VALUES ('OVERWHELMED', " +
+                    "'bury or drown beneath a huge mass');");
+            outputStream.println("INSERT INTO MOOD VALUES ('HOPEFUL', " +
+                    "'feeling or inspiring optimism about a future event');");
+            outputStream.println("INSERT INTO MOOD VALUES ('LONELY', " +
+                    "'sad because one has no friends or company');");
+            outputStream.println("INSERT INTO MOOD VALUES ('LOVESTRUCK', " +
+                    "'besotted or infatuated.');");
+            outputStream.println("INSERT INTO MOOD VALUES ('BORED', " +
+                    "'feeling weary because one is unoccupied or lacks interest in one's current activity');");
+            outputStream.println("INSERT INTO MOOD VALUES ('SURPRISED', " +
+                    "'mild astonishment or shock');");
+            outputStream.println("INSERT INTO MOOD VALUES ('ANXIOUS', " +
+                    "'experiencing worry, unease, or nervousness');");
+            outputStream.println("INSERT INTO MOOD VALUES ('SHOCKED', " +
+                    "'surprised and upset');");
+            outputStream.println("INSERT INTO MOOD VALUES ('SHY', " +
+                    "'being reserved or having or showing nervousness or timidity');");
 
             // Release resources
             if (inputStream != null) {

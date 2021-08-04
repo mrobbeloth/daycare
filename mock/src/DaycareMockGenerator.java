@@ -142,7 +142,7 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO MOOD VALUES ('CONFUSED', " +
                     "'unable to think clearly; bewildered');");
             outputStream.println("INSERT INTO MOOD VALUES ('ECSTATIC', " +
-                    "'overwhelming happiness or joyful excitement);");
+                    "'overwhelming happiness or joyful excitement');");
             outputStream.println("INSERT INTO MOOD VALUES ('GUILTY', " +
                     "'culpable of or responsible for a specified wrongdoing');");
             outputStream.println("INSERT INTO MOOD VALUES ('SUSPICIOUS', " +
@@ -171,7 +171,7 @@ public class DaycareMockGenerator {
             outputStream.println("INSERT INTO MOOD VALUES ('ENRAGED', " +
                     "'very angry; furious');");
             outputStream.println("INSERT INTO MOOD VALUES ('ASHAMED', " +
-                    "'embarrassed or guilty because of one's actions, characteristics, or associations');");
+                    "'embarrassed or guilty because of one''s actions, characteristics, or associations');");
             outputStream.println("INSERT INTO MOOD VALUES ('CAUTIOUS', " +
                     "'careful to avoid potential problems or dangers');");
             outputStream.println("INSERT INTO MOOD VALUES ('SMUG', " +

@@ -203,7 +203,7 @@ public class DaycareMockGenerator {
             for (int i = 0; i < numEntries; i++) {
                 LocalDate ld = LocalDate.now();
                 LocalTime lt = LocalTime.now();
-                String dmlStmt = "INSERT INTO TRANSFER VALUES ('DEFAULT','"+ld.toString()+"','"+lt.toString()+"');";
+                String dmlStmt = "INSERT INTO TRANSFER VALUES (DEFAULT,'"+ld.toString()+"','"+lt.toString()+"');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
             }

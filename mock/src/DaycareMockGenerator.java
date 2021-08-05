@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -109,7 +110,8 @@ public class DaycareMockGenerator {
             }
 
             // Assign children to parents
-            ArrayList<Integer> kidPicks = new ArrayList<>(entries);
+            ArrayList<Integer> kidPicks = new ArrayList<>(numEntries);
+            HashMap<Integer, Integer> families = new HashMap<>(numEntries);
             int curParent = 0;
             int childALSize = children.size();
             for (int i = 0; curParent < parents.size(); i++) {
@@ -129,6 +131,9 @@ public class DaycareMockGenerator {
                 if (i%2 == 0)  {
                     curParent++;
                 }
+
+                // keep track of families for transfers
+                families.put(cid, pid);
             }
 
             // Generate category tuples
@@ -203,7 +208,15 @@ public class DaycareMockGenerator {
             for (int i = 0; i < numEntries; i++) {
                 LocalDate ld = LocalDate.now();
                 LocalTime lt = LocalTime.now();
+                int kid = rand.nextInt(numEntries);
+                int parent= families.get(kid).intValue();
                 String dmlStmt = "INSERT INTO TRANSFER VALUES (DEFAULT,'"+ld.toString()+"','"+lt.toString()+"');";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO ATTENDANCE VALUES ("+i+","+kid+");";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO PARENT_XCHGE VALUES ("+i+","+parent+");";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
             }

@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -196,6 +198,15 @@ public class DaycareMockGenerator {
                     "'surprised and upset');");
             outputStream.println("INSERT INTO MOOD VALUES ('SHY', " +
                     "'being reserved or having or showing nervousness or timidity');");
+
+            // Create some sample Transfer tuples
+            for (int i = 0; i < numEntries; i++) {
+                LocalDate ld = LocalDate.now();
+                LocalTime lt = LocalTime.now();
+                String dmlStmt = "INSERT INTO TRANSFER VALUES ('DEFAULT','"+ld.toString()+"','"+lt.toString()+"');";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+            }
 
             // Release resources
             if (inputStream != null) {

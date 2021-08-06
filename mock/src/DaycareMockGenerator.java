@@ -209,7 +209,10 @@ public class DaycareMockGenerator {
                 LocalDate ld = LocalDate.now();
                 LocalTime lt = LocalTime.now();
                 int kid = rand.nextInt(numEntries);
-                int parent= families.get(kid).intValue();
+                int parent= families.getOrDefault(kid, -1);
+                if (parent == -1) {
+                    continue;
+                }
                 String dmlStmt = "INSERT INTO TRANSFER VALUES (DEFAULT,'"+ld.toString()+"','"+lt.toString()+"');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);

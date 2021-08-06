@@ -226,7 +226,7 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",'DROPOFF');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER("+i+",HAPPY');";
+                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER("+i+",'HAPPY');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
                 i++;

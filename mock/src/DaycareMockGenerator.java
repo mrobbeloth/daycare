@@ -205,7 +205,7 @@ public class DaycareMockGenerator {
                     "'being reserved or having or showing nervousness or timidity');");
 
             // Create some sample Transfer tuples
-            for (int i = 1; i <= numEntries; i++) {
+            for (int i = 1; i <= numEntries*2;i++) {
                 LocalDate ld = LocalDate.now();
                 LocalTime lt = LocalTime.now();
                 int kid = rand.nextInt(numEntries);
@@ -223,6 +223,24 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO PARENT_XCHGE VALUES ("+i+","+parent+");";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",DROPOFF');";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO MOOD("+i+",HAPPY');";
+                i++;
+                dmlStmt = "INSERT INTO TRANSFER VALUES (DEFAULT,'"+ld.toString()+"','"+lt.toString()+"');";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO ATTENDANCE VALUES ("+i+","+kid+");";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO PARENT_XCHGE VALUES ("+i+","+parent+");";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",PICKUP');";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
+                dmlStmt = "INSERT INTO MOOD("+i+",EXHAUSTED');";
             }
 
             // Release resources

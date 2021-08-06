@@ -242,7 +242,7 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO CATEGORY_TRANSFER VALUES ("+i+",'PICKUP');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER VALUES ("+i+",EXHAUSTED');";
+                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER VALUES ("+i+",'EXHAUSTED');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
             }

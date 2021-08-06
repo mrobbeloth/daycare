@@ -211,6 +211,7 @@ public class DaycareMockGenerator {
                 int kid = rand.nextInt(numEntries);
                 int parent= families.getOrDefault(kid, -1);
                 if (parent == -1) {
+                    i--;
                     continue;
                 }
                 String dmlStmt = "INSERT INTO TRANSFER VALUES (DEFAULT,'"+ld.toString()+"','"+lt.toString()+"');";

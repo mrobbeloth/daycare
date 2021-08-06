@@ -223,10 +223,10 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO PARENT_XCHGE VALUES ("+i+","+parent+");";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",'DROPOFF');";
+                dmlStmt = "INSERT INTO CATEGORY_TRANSFER VALUES ("+i+",'DROPOFF');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER("+i+",'HAPPY');";
+                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER VALUES("+i+",'HAPPY');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
                 i++;
@@ -239,10 +239,10 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO PARENT_XCHGE VALUES ("+i+","+parent+");";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",'PICKUP');";
+                dmlStmt = "INSERT INTO CATEGORY_TRANSFER VALUES ("+i+",'PICKUP');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER("+i+",EXHAUSTED');";
+                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER VALUES ("+i+",EXHAUSTED');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
             }

@@ -226,7 +226,9 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",'DROPOFF');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO MOOD("+i+",HAPPY');";
+                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER("+i+",HAPPY');";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
                 i++;
                 dmlStmt = "INSERT INTO TRANSFER VALUES (DEFAULT,'"+ld.toString()+"','"+lt.toString()+"');";
                 System.out.println(dmlStmt);
@@ -240,7 +242,9 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",'PICKUP');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO MOOD("+i+",EXHAUSTED');";
+                dmlStmt = "INSERT INTO DISPOSITION_TRANSFER("+i+",EXHAUSTED');";
+                System.out.println(dmlStmt);
+                outputStream.println(dmlStmt);
             }
 
             // Release resources

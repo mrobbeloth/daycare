@@ -74,7 +74,7 @@ public class DaycareMockGenerator {
 
             // Generate children
             int entries = people.size();
-            for(int i = 0; i < numEntries; i++) {
+            for(int i = 1; i <= numEntries; i++) {
                 int randChoice = rand.nextInt(entries);
                 Person randPerson = people.get(randChoice);
                 String dmlStmt = "INSERT INTO CHILD VALUES (DEFAULT,'" +randPerson.getFirstName()+ "','" +
@@ -205,7 +205,7 @@ public class DaycareMockGenerator {
                     "'being reserved or having or showing nervousness or timidity');");
 
             // Create some sample Transfer tuples
-            for (int i = 0; i < numEntries; i++) {
+            for (int i = 1; i <= numEntries; i++) {
                 LocalDate ld = LocalDate.now();
                 LocalTime lt = LocalTime.now();
                 int kid = rand.nextInt(numEntries);

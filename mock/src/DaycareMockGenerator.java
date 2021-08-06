@@ -223,7 +223,7 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO PARENT_XCHGE VALUES ("+i+","+parent+");";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",DROPOFF');";
+                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",'DROPOFF');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
                 dmlStmt = "INSERT INTO MOOD("+i+",HAPPY');";
@@ -237,7 +237,7 @@ public class DaycareMockGenerator {
                 dmlStmt = "INSERT INTO PARENT_XCHGE VALUES ("+i+","+parent+");";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
-                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",PICKUP');";
+                dmlStmt = "INSERT INTO CATEGORY_TRANSFER("+i+",'PICKUP');";
                 System.out.println(dmlStmt);
                 outputStream.println(dmlStmt);
                 dmlStmt = "INSERT INTO MOOD("+i+",EXHAUSTED');";

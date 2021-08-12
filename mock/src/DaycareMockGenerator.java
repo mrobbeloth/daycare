@@ -257,5 +257,6 @@ public class DaycareMockGenerator {
             if (outputStream != null) {
                 outputStream.close();
             }
+            kb.close();
         }
 }

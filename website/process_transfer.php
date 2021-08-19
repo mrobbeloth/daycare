@@ -24,7 +24,7 @@
                 $last_name =  strtoupper($name[1]);
 
                 $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
-                
+                printf("<p>" . $nameSearchQuery . "</p>");
                 if(!($Result = pg_query($daycareDBConnection, $nameSearchQuery))) {
                     printf("<p>There was a result</p><br/>");
                     $Cursor = pg_fetch_all("$Result");

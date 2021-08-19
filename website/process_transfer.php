@@ -52,13 +52,18 @@
                 printf($nameSearchQuery);
                 if($ResultParentQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
                     $CursorParentQuery = pg_fetch_all($ResultParentQuery);
-                }
+                }                
             }
             else {
                 $paID = $pname;
             }
 
-            print("<p> " . $cid . " " . $paID . "</p></br>");
+            // TODO:
+            // join child and parent results on family, should hopefully only be one
+            // select family.cid, family.pid from family
+            // inner join child on child.cid 
+            // inner join parent on parent.pid
+            // print("<p> " . $cid . " " . $paID . "</p></br>");
 
             // Log the transfer entry and grab tid for use in other tables
             $DMLStmtTransfer = "INSERT INTO TRANSFER VALUES (DEFAULT, '" . date("Y-m-d") . "', '" . date("H:i:s") . "') RETURNING tid;";

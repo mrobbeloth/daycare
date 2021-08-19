@@ -18,6 +18,7 @@
             // if child name is provided instead of id, Look up child id
             $cid = 0;
             if (!is_numeric($cname)) {
+                printf("<p>Trying to convert</p><br/>");
                 $name = explode(" ", $cname, 2);
                 $first_name = ucfirst(strtolower($name[0]));
                 $last_name =  strtoupper($name[1]);
@@ -28,7 +29,7 @@
                     $Cursor = pg_fetch_all("$Result");
                     foreach($Cursor as $Row) {
                         foreach($Row as $Column) {
-                            print("<p>" . $Column . "</p>");
+                            print("<p>" . $Column . "</p><br/>");
                         }
                     }
                 }

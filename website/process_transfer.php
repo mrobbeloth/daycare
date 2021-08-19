@@ -16,7 +16,7 @@
                                               "password=" . $configSettings['password']);
 
             // Log the transfer entry and grab tid for use in other tables
-            $DMLStmtTransfer = "INSERT INTO TRANSFER VALUES (DEFAULT," . date("Y-m-d") . "," . time("H-i-s") . ") RETURNING tid;";
+            $DMLStmtTransfer = "INSERT INTO TRANSFER VALUES (DEFAULT, '" . date("Y-m-d") . "', '" . time("H-i-s") . "') RETURNING tid;";
             
             if(!($Result = pg_query($daycareDBConnection, $DMLStmtTransfer))) {
                 print("Failed: " . pg_last_error($daycareDBConnection));

@@ -25,7 +25,7 @@
 
                 $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
                 printf("<p>" . $nameSearchQuery . "</p>");
-                if(!($Result = pg_query($daycareDBConnection, $nameSearchQuery))) {
+                if($Result = pg_query($daycareDBConnection, $nameSearchQuery)) {
                     printf("<p>There was a result</p><br/>");
                     $Cursor = pg_fetch_all($Result);
                     printf("<p>Going through each row/p><br/>");
@@ -35,6 +35,9 @@
                             print("<p>" . $Column . "</p><br/>");
                         }
                     }
+                }
+                else {
+                    printf("<p>" . "No result" . "</p></br>");
                 }
 
             }

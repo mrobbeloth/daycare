@@ -15,9 +15,33 @@
                                               "user=" . $configSettings['user'] . " " .
                                               "password=" . $configSettings['password']);
 
+            // if child name is provided instead of id, Look up child id
+            $cid = 0;
+            if (!is_numeric($cname)) {
+                $name = explode(" ", $cname, 2);
+                $first_name = ucfirst(strtolower($name[0]));
+                $last_name =  strtoupper($name[1]);
+
+                $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname =" . $first_name . " AND lname =" . $last_name . ";";
+                
+                if(!($Result = pg_query($daycareDBConnection, $nameSearchQuery))) {
+                    $Cursor = pg_fetch_all("$Result");
+                    foreach($Cursor as $Row) {
+                        foreach($Row as $Column) {
+                            print("<p>" . $Column . "</p>");
+                        }
+                    }
+                }
+
+            }
+            else {
+                $cid = $cname;
+            }
+
             // Log the transfer entry and grab tid for use in other tables
             $DMLStmtTransfer = "INSERT INTO TRANSFER VALUES (DEFAULT, '" . date("Y-m-d") . "', '" . date("H:i:s") . "') RETURNING tid;";
             
+            $tid = 0;
             if(!($Result = pg_query($daycareDBConnection, $DMLStmtTransfer))) {
                 print("Failed: " . pg_last_error($daycareDBConnection));
             }

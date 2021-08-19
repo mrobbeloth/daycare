@@ -16,13 +16,14 @@
                                               "password=" . $configSettings['password']);
 
             // if child name is provided instead of id, Look up child id
-            $cid = 0;
+            $cid = -1;
             if (!is_numeric($cname)) {
                 $name = explode(" ", $cname, 2);
                 $first_name = ucfirst(strtolower($name[0]));
                 $last_name =  strtoupper($name[1]);
 
                 $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
+                printf($nameSearchQuery);
                 if($ResultChildQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
                     $CursorChildQuery = pg_fetch_all($ResultChildQuery);
                     foreach($CursorChildQuery as $Row) {
@@ -41,13 +42,14 @@
             }
 
               // if parent name is provided instead of id, Look up parent id
-            $paID = 0;
+            $paID = -1;
             if (!is_numeric($pname)) {
                 $name = explode(" ", $pname, 2);
                 $first_name = ucfirst(strtolower($name[0]));
                 $last_name =  strtoupper($name[1]);
 
                 $nameSearchQuery = "SELECT pid FROM PARENT WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
+                printf($nameSearchQuery);
                 if($ResultParentQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
                     $CursorParentQuery = pg_fetch_all($ResultParentQuery);
                 }

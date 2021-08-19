@@ -23,7 +23,7 @@
                 $first_name = ucfirst(strtolower($name[0]));
                 $last_name =  strtoupper($name[1]);
 
-                $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname =" . $first_name . " AND lname =" . $last_name . ";";
+                $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
                 
                 if(!($Result = pg_query($daycareDBConnection, $nameSearchQuery))) {
                     $Cursor = pg_fetch_all("$Result");

@@ -18,19 +18,14 @@
             // if child name is provided instead of id, Look up child id
             $cid = 0;
             if (!is_numeric($cname)) {
-                printf("<p>Trying to convert!</p><br/>");
                 $name = explode(" ", $cname, 2);
                 $first_name = ucfirst(strtolower($name[0]));
                 $last_name =  strtoupper($name[1]);
 
                 $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
-                printf("<p>" . $nameSearchQuery . "</p>");
-                if($Result = pg_query($daycareDBConnection, $nameSearchQuery)) {
-                    printf("<p>There was a result</p><br/>");
-                    $Cursor = pg_fetch_all($Result);
-                    printf("<p>Going through each row/p><br/>");
-                    foreach($Cursor as $Row) {
-                        printf("<p>Going through each column/p><br/>");
+                if($ResultChildQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
+                    $CursorChildQuery = pg_fetch_all($ResultChildQuery);
+                    foreach($CursorChildQuery as $Row) {
                         foreach($Row as $Column) {
                             print("<p>" . $Column . "</p><br/>");
                         }
@@ -44,6 +39,24 @@
             else {
                 $cid = $cname;
             }
+
+              // if parent name is provided instead of id, Look up parent id
+            $paID = 0;
+            if (!is_numeric($pname)) {
+                $name = explode(" ", $pname, 2);
+                $first_name = ucfirst(strtolower($name[0]));
+                $last_name =  strtoupper($name[1]);
+
+                $nameSearchQuery = "SELECT pid FROM PARENT WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
+                if($ResultParentQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
+                    $CursorParentQuery = pg_fetch_all($ResultParentQuery);
+                }
+            }
+            else {
+                $paID = $pname;
+            }
+
+            print("<p> " . $cid . " " . $paID . "</p></br>");
 
             // Log the transfer entry and grab tid for use in other tables
             $DMLStmtTransfer = "INSERT INTO TRANSFER VALUES (DEFAULT, '" . date("Y-m-d") . "', '" . date("H:i:s") . "') RETURNING tid;";

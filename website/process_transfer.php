@@ -18,7 +18,7 @@
             // if child name is provided instead of id, Look up child id
             $cid = 0;
             if (!is_numeric($cname)) {
-                printf("<p>Trying to convert</p><br/>");
+                printf("<p>Trying to convert!</p><br/>");
                 $name = explode(" ", $cname, 2);
                 $first_name = ucfirst(strtolower($name[0]));
                 $last_name =  strtoupper($name[1]);
@@ -26,8 +26,11 @@
                 $nameSearchQuery = "SELECT cid FROM CHILD WHERE fname = '" . $first_name . "' AND lname = '" . $last_name . "';";
                 
                 if(!($Result = pg_query($daycareDBConnection, $nameSearchQuery))) {
+                    printf("<p>There was a result</p><br/>");
                     $Cursor = pg_fetch_all("$Result");
+                    printf("<p>Going through each row/p><br/>");
                     foreach($Cursor as $Row) {
+                        printf("<p>Going through each column/p><br/>");
                         foreach($Row as $Column) {
                             print("<p>" . $Column . "</p><br/>");
                         }

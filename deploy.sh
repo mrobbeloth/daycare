@@ -12,10 +12,16 @@ psql -f mock/createTables.sql daycare
 # on the daycare database
 psql -f mock/insert_daycare_log_data.sql daycare
 
-# Debugging prompt
-read -p "Press any key to resume ..."
+# Status prompt
+read -p "Daycare tables created, mock data inserted, press any key to continue"
 
 # Remove daycare database 
-# Should be placed into separate script at some point
-echo "Removing Daycare Database"
-dropdb daycare
+echo "Would you like to remove the database (yes | no)"
+read delChoice
+if [ $delChoice == 'yes' ] 
+then
+   echo "Removing Daycare Database"
+   dropdb daycare
+else
+   echo "Not dropping Daycare Database"
+fi

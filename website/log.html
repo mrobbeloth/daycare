@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Daycare Sign-in Page</title>
+    </head>    
+    
+    <body>
+        <h1>Daycare Sign-in</h1>
+        <p> When you arrive to drop-off or pick-up your precious one(s), please fill out the sign-in form 
+            for your child. If you have more than more child, please fill-out multiple times.</p>
+        <form action="process_transfer.php" method="post">
+            <label for="child_name_id">Child&apos;s Name or Assign ID: </label> <br>
+            <input type="text" id="child_name_id" name="child_name_id"><br>
+            <label for="parent_name_id">Parent&apos;s Name or Assign ID: </label> <br>
+            <input type="text" id="parent_name_id" name="parent_name_id"><br>
+            <label for="category_choice">Reason for Sign-in: </label> <br>
+            <select id="category_choice" name="category_choice" size="3"> 
+                <option value="DROPOFF">Drop-off</option>
+                <option value="PICKUP">Pick-up</option>
+                <!-- Prospective visit or parent observation for example-->
+                <option value="OTHER">Other</option>
+            <!-- Obviously selecting an image from a table would be better here, something for 
+                 another day. To allow multiple would require support of a array attribute
+                 in the database-->    
+            </select>
+            <br/>
+            <label for="mood_choice">What was the child&apos;s mood today&quest; </label> <br>
+            <select id="mood_choice" name="mood_choice" size="5"> 
+                    <option value="EXHAUSTED">Exhausted</option>
+                    <option value="CONFUSED">Confused</option>
+                    <option value="ECSTATIC">Ecstatic</option>
+                    <option value="EXHAUSTED">Exhausted</option>
+                    <option value="GUILTY">Gulity</option>
+                    <option value="ANGRY">Angry</option>
+                    <option value="SAD">Sad</option>
+                    <option value="CONFIDENT">Confident</option>
+                    <option value="EMBARRASSED">Embarrassed</option>
+                    <option value="HAPPY">Happy</option>
+                    <option value="MISCHIEVOUS">Mischievious</option>
+                    <option value="DISGUSTED">Disgusted</option>                 
+                    <option value="FRIGHTENED">Frigtened</option>
+                    <option value="ENRAGED">Enraged</option>
+                    <option value="ASHAMED">Ashamed</option>
+                    <option value="CAUTIOUS">Cautious</option>
+                    <option value="SMUG">Smug</option>
+                    <option value="DEPRESSED">Depressed</option>
+                    <option value="OVERWHELMED">Overwhelmed</option>
+                    <option value="HOPEFUL">Hopeful</option>
+                    <option value="LONELY">Lonely</option>
+                    <option value="LOVESTRUCK">Lovestruck</option>
+                    <option value="BORED">Bored</option>
+                    <option value="SURPRISED">Surprised</option>               
+                    <option value="ANXIOUS">Anxious</option>
+                    <option value="SHOCKED">Shocked</option>
+                    <option value="SHY">Shy</option>           
+            </select>
+            </br>
+            <button type="submit" name="sign-in"><b>Sign</b></button>
+        </form>
+    </body>
+</html>

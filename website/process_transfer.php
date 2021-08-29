@@ -6,6 +6,8 @@
             $pname = $_POST['parent_name_id'];
             $cat_ch = $_POST['category_choice'];
             $mood_ch = $_POST['mood_choice'];
+            $array_child = array();
+            $array_parent = array();
             echo "Sign-in Verified for " . $cname;        
             
             // connect to database to perform logging activity
@@ -26,9 +28,11 @@
                 printf($nameSearchQuery);
                 if($ResultChildQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
                     $CursorChildQuery = pg_fetch_all($ResultChildQuery);
+                    $cnt = 0;
                     foreach($CursorChildQuery as $Row) {
                         foreach($Row as $Column) {
                             print("<p>" . $Column . "</p><br/>");
+                            $array_child[$cnt++] = $Column;
                         }
                     }
                 }
@@ -39,6 +43,11 @@
             }
             else {
                 $cid = $cname;
+            }
+
+            if((count($array_child) == 1) && ($cid == -1)) {
+                $cid = $array_child[0];
+                unset($array_child[0]);
             }
 
               // if parent name is provided instead of id, Look up parent id
@@ -52,18 +61,45 @@
                 printf($nameSearchQuery);
                 if($ResultParentQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
                     $CursorParentQuery = pg_fetch_all($ResultParentQuery);
+                    $cnt = 0;
+                    foreach($CursorChildQuery as $Row) {
+                        foreach($Row as $Column) {
+                            print("<p>" . $Column . "</p><br/>");
+                            $array_parent[$cnt++] = $Column;
+                        }
+                    }
                 }                
             }
             else {
                 $paID = $pname;
             }
 
+            if((count($array_parent) == 1) && ($paId == -1)) {
+                $paID = $array_parent[0];
+                unset($array_parent[0]);
+            }            
+
             // TODO:
-            // join child and parent results on family, should hopefully only be one
-            // select family.cid, family.pid from family
-            // inner join child on child.cid 
-            // inner join parent on parent.pid
-            // print("<p> " . $cid . " " . $paID . "</p></br>");
+            // verify correct parent and child pairing from family relation before permitting insertion
+            $arrChldCnt = count($array_child);
+            $arrPrntCnt = count($array_parent);
+            for($i = 0; $i < $arrChldCnt; $i++) {
+                for($j = 0; $j < $array_parent; $j++) {
+                    $nameSearchQuery = "SELECT count(*) from FAMILY WHERE cid=" . $array_child[i] . " and pid=" . $array_parent[j];
+                    if($ResultChildQuery = pg_query($daycareDBConnection, $nameSearchQuery)) {
+                        $CursorParentQuery = pg_fetch_all($ResultParentQuery);
+                        foreach($CursorChildQuery as $Row) {
+                            foreach($Row as $Column) {
+                                $cntResult = $Column;
+                                if ($cntResult == 1) {
+                                    print("<p>" . "Verified pairing" . "</p><br/>");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
 
             // Log the transfer entry and grab tid for use in other tables
             $DMLStmtTransfer = "INSERT INTO TRANSFER VALUES (DEFAULT, '" . date("Y-m-d") . "', '" . date("H:i:s") . "') RETURNING tid;";
@@ -81,10 +117,25 @@
 
 
             // Use tid to connect given parent and child transfer
-            //$DMLStmtAtt = "INSERT INTO ATTENDANCE VALUES ("
-            //$DMLStmtParXChge = "INSERT INTO PARENT_XCHGE VALUES ("
-            //$DMLStmtCatTrsf = "INSERT INTO CATEGORY_TRANSFER VALUES ("
-            //$DMLStmtDisTrsf = "NSERT INTO DISPOSITION_TRANSFER VALUES ("
+            $DMLStmtAtt = "INSERT INTO ATTENDANCE VALUES (" . $tid . "," . $cid . ");";
+            if(!($Result = pg_($daycareDBConnection, $DMLStmtAtt))) {
+                print("Failed attendance: " . pg_last_error($daycareDBConnection));
+            }
+
+            $DMLStmtParXChge = "INSERT INTO PARENT_XCHGE VALUES (" . $tid . "," . $paID . ");";
+            if(!($Result = pg_($daycareDBConnection, $DMLStmtAtt))) {
+                print("Failed xchge: " . pg_last_error($daycareDBConnection));
+            }
+
+            $DMLStmtCatTrsf = "INSERT INTO CATEGORY_TRANSFER VALUES (" . $tid . "," . $cat_ch . ");";
+            if(!($Result = pg_($daycareDBConnection, $DMLStmtAtt))) {
+                print("Failed categeory: " . pg_last_error($daycareDBConnection));
+            }
+
+            $DMLStmtDisTrsf = "INSERT INTO DISPOSITION_TRANSFER VALUES (" . $tid . "," . $mood_ch . ");"; 
+            if(!($Result = pg_($daycareDBConnection, $DMLStmtAtt))) {
+                print("Failed disposition: " . pg_last_error($daycareDBConnection));
+            }
         ?>
     </body>
 </html>

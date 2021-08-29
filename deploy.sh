@@ -25,3 +25,6 @@ then
 else
    echo "Not dropping Daycare Database"
 fi
+
+# Copy front-end website over to Apache Web Server
+cp website/* ~/web/

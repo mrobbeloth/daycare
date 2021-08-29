@@ -122,17 +122,17 @@
             }
 
             $DMLStmtParXChge = "INSERT INTO PARENT_XCHGE VALUES (" . $tid . "," . $paID . ");";
-            if(!($Result = pg_query($daycareDBConnection, $DMLStmtAtt))) {
+            if(!($Result = pg_query($daycareDBConnection, $DMLStmtParXChge))) {
                 print("Failed xchge: " . pg_last_error($daycareDBConnection));
             }
 
             $DMLStmtCatTrsf = "INSERT INTO CATEGORY_TRANSFER VALUES (" . $tid . "," . $cat_ch . ");";
-            if(!($Result = pg_query($daycareDBConnection, $DMLStmtAtt))) {
+            if(!($Result = pg_query($daycareDBConnection, $DMLStmtCatTrsf))) {
                 print("Failed categeory: " . pg_last_error($daycareDBConnection));
             }
 
             $DMLStmtDisTrsf = "INSERT INTO DISPOSITION_TRANSFER VALUES (" . $tid . "," . $mood_ch . ");"; 
-            if(!($Result = pg_query($daycareDBConnection, $DMLStmtAtt))) {
+            if(!($Result = pg_query($daycareDBConnection, $DMLStmtDisTrsf))) {
                 print("Failed disposition: " . pg_last_error($daycareDBConnection));
             }
         ?>

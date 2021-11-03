@@ -1,0 +1,15 @@
+body {
+    background-color: yellow;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+button {
+    color: red;
+    border-style: groove;
+}

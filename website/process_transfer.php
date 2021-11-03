@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xml:lang='en'>
+    <head>
+        <title>Verification</title>
+    </head>
     <body>
         <?php
             $cname = $_POST['child_name_id'];

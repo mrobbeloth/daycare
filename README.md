@@ -1,5 +1,5 @@
 # daycare
-A mini-project example for my awesome CSC-3032 students
+A mini-project example for my awesome CSC-3074 students
 
 Assumptions:
 1. PostgreSQL 12
